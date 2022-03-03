@@ -99,13 +99,13 @@ for url in urls:
         })
 
 # Create connection to database
-conn = sqlite3.connect('billboard.db')
+conn = sqlite3.connect('data\\billboard.db')
 c = conn.cursor()
 
 # Delete tables if they exist
 c.execute('DROP TABLE IF EXISTS "billboard";')
 
-# use CREATE TABLE to create the companies table in the database
+# use CREATE TABLE to create the billboard table in the database
 create_billboard_table_command = '''
 CREATE TABLE IF NOT EXISTS billboard (
     rank REAL,
