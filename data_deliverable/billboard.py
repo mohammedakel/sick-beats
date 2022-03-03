@@ -77,7 +77,7 @@ for url in urls:
         title = song_wrapper.find('h3').string.strip()
         # get song artist
         artists = song_wrapper.find('span').string.strip()
-        r = artists.replace(' &', ',').replace(' /', ',').replace(' X ', ', ').replace(' x ', ', ')
+        r = artists.replace(' &', ',').replace(' /', ',').replace(' X ', ', ').replace(' x ', ', ').replace(' +', ',')
         r2 = r.replace(' (', ', ').replace(' Featuring', ',').replace(' With', ',')
         names = r2.split(', ')
         if names[-1][-1] == ")":
