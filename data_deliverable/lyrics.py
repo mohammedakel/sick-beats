@@ -10,7 +10,7 @@ base_url = "https://api.genius.com"
 headers = {'Authorization': 'Bearer Cmy3VucAY4A_QoI6U8Zz5yO0ZCAlMc0Avk2DH2arPbXW4N-2wsUvv_309Cdi2MOW'}
 
 # Create connection to database
-conn = sqlite3.connect('billboard.db')
+conn = sqlite3.connect('data/billboard.db')
 c = conn.cursor()
 
 create_cmd = '''
@@ -25,7 +25,7 @@ c.execute(create_cmd)
 
 select_cmd = '''
 SELECT 
-	title, artist
+	DISTINCT title, artist
 FROM
 	billboard
 ORDER BY artist
@@ -112,7 +112,7 @@ for row in c:
 			titles.append(song_title)
 			artists.append(artist_name)
 
-			#conn2 = sqlite3.connect('billboard.db')
+			#conn2 = sqlite3.connect('data/billboard.db')
 			#c2 = conn2.cursor()
 			#c2.execute(test_cmd, (song_title, artist_name))
 			#c2.execute(update_cmd, (lyr, song_title, artist_name))
@@ -121,7 +121,7 @@ for row in c:
 		elif json["response"]["hits"] != []:
 			print("Could not find artist", artist_name, "for song", song_title, "\n")
 
-conn2 = sqlite3.connect('billboard.db')
+conn2 = sqlite3.connect('data/billboard.db')
 c2 = conn2.cursor()
 
 for i in range(len(lyr)):
