@@ -3,20 +3,13 @@ import requests
 import sqlite3
 
 # BILLBOARD URLS
-JUL_24_2020_URL = 'https://web.archive.org/web/20200724/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
 SEPT_11_2020_URL = 'https://web.archive.org/web/20200911/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
-JAN_11_2021_URL = 'https://web.archive.org/web/20210111/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
-JUNE_22_2021_URL = 'https://web.archive.org/web/20210622/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
-SEPT_13_2021_URL = 'https://web.archive.org/web/20210913/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
-OCT_26_2021_URL = 'https://web.archive.org/web/20211026/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
-NOV_28_2021_URL = 'https://web.archive.org/web/20211128/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
-JAN_15_2022_URL = 'https://web.archive.org/web/20220115/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
 
 # Initalize data slice
 data = []
 
-# Use BeautifulSoup and requests to collect data before Nov 2021
-urls = [JUL_24_2020_URL, SEPT_11_2020_URL, JAN_11_2021_URL, JUNE_22_2021_URL, SEPT_13_2021_URL, OCT_26_2021_URL]
+# Use BeautifulSoup and requests to collect data
+urls = [SEPT_11_2020_URL]
 for url in urls:
     r = requests.get(url).text
     soup = BeautifulSoup(r, 'html.parser')
@@ -58,50 +51,8 @@ for url in urls:
             'year': year
         })
 
-# Use BeautifulSoup and requests to collect data after Nov 2021 (HTML layout changed)
-urls = [NOV_28_2021_URL, JAN_15_2022_URL]
-for url in urls:
-    r = requests.get(url).text
-    soup = BeautifulSoup(r, 'html.parser')
-    items = soup.find_all('div', 'o-chart-results-list-row-container')
-    rows = []
-    for item in items:
-        rows.append(item.find('ul'))
-    
-    # extract and insert into data slice
-    for row in rows:
-        pos_wrapper = row.find('li', 'o-chart-results-list__item')
-        song_wrapper = row.find('li', 'lrv-u-width-100p').find('ul').find('li')
-
-        # get song ranking
-        pos = int(pos_wrapper.find('span').string.strip())
-        # get song title
-        title = song_wrapper.find('h3').string.strip()
-        # get song artist
-        artists = song_wrapper.find('span').string.strip()
-        r = artists.replace(' &', ',').replace(' /', ',').replace(' X ', ', ').replace(' x ', ', ').replace(' +', ',')
-        r2 = r.replace(' (', ', ').replace(' Featuring', ',').replace(' With', ',')
-        names = r2.split(', ')
-        if names[-1][-1] == ")":
-            names[-1] = names[-1][:-1]
-        # get month
-        month = int(url[32:34])
-        # get day
-        day = int(url[34:36])
-        # get year
-        year = int(url[28:32])
-
-        data.append({
-            'pos': pos,
-            'title': title,
-            'artists': names,
-            'month': month,
-            'day': day,
-            'year': year
-        })
-
 # Create connection to database
-conn = sqlite3.connect('data\\billboard.db')
+conn = sqlite3.connect('data\\small_sample.db')
 c = conn.cursor()
 
 # Delete tables if they exist
