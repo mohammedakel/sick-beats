@@ -3,8 +3,10 @@ import requests
 import sqlite3
 
 # BILLBOARD URLS
+APR_10_2020_URL = 'https://web.archive.org/web/20200410/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
 JUL_24_2020_URL = 'https://web.archive.org/web/20200724/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
 SEPT_11_2020_URL = 'https://web.archive.org/web/20200911/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
+DEC_30_2020_URL = 'https://web.archive.org/web/20201230/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
 JAN_11_2021_URL = 'https://web.archive.org/web/20210111/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
 JUNE_22_2021_URL = 'https://web.archive.org/web/20210622/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
 SEPT_13_2021_URL = 'https://web.archive.org/web/20210913/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
@@ -16,7 +18,8 @@ JAN_15_2022_URL = 'https://web.archive.org/web/20220115/https://www.billboard.co
 data = []
 
 # Use BeautifulSoup and requests to collect data before Nov 2021
-urls = [JUL_24_2020_URL, SEPT_11_2020_URL, JAN_11_2021_URL, JUNE_22_2021_URL, SEPT_13_2021_URL, OCT_26_2021_URL]
+urls = [APR_10_2020_URL, JUL_24_2020_URL, SEPT_11_2020_URL, DEC_30_2020_URL, 
+        JAN_11_2021_URL, JUNE_22_2021_URL, SEPT_13_2021_URL, OCT_26_2021_URL]
 for url in urls:
     r = requests.get(url).text
     soup = BeautifulSoup(r, 'html.parser')
