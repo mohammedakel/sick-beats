@@ -2,81 +2,119 @@ from bs4 import BeautifulSoup
 import requests
 import sqlite3
 
-### BILLBOARD SCRAPING
-BILLBOARD_URL = "https://www.billboard.com/charts/hot-100/"
+# BILLBOARD URLS
+SEPT_11_2020_URL = 'https://web.archive.org/web/20200911/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
+JAN_11_2021_URL = 'https://web.archive.org/web/20210111/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
+JUNE_22_2021_URL = 'https://web.archive.org/web/20210622/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
+SEPT_13_2021_URL = 'https://web.archive.org/web/20210913/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
+NOV_28_2021_URL = 'https://web.archive.org/web/20211128/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
+JAN_15_2022_URL = 'https://web.archive.org/web/20220115/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
 
-# Use BeautifulSoup and requests to collect data required for the assignment.
-r = requests.get(BILLBOARD_URL).text
-soup = BeautifulSoup(r, 'html.parser')
-post = soup.find(id='post-1479786')
-pmc = post.find('div', 'pmc-paywall')
-layer1 = pmc.find('div')
-layer2 = layer1.find('div')
-layer3 = layer2.find('div')
-chart = layer3.find('div', 'chart-results-list')
-row_containers = chart.find_all('div', 'o-chart-results-list-row-container')
-
-rows = []
-for row_container in row_containers:
-    rows.append(row_container.find('ul'))
-
+# Initalize data slice
 data = []
-for row in rows:
-    pos_wrap = row.find('li')
 
-    rest_wrap1 = row.find('li', 'lrv-u-width-100p')
-    rest_wrap2 = rest_wrap1.find('ul')
-    rest = rest_wrap2.find_all('li')
+# Use BeautifulSoup and requests to collect data before Nov 2021
+urls = [SEPT_11_2020_URL, JAN_11_2021_URL, JUNE_22_2021_URL, SEPT_13_2021_URL]
+for url in urls:
+    r = requests.get(url).text
+    soup = BeautifulSoup(r, 'html.parser')
+    chart = soup.find(id='charts').find('div', 'chart-list container')
+    items = chart.find('ol').find_all('li')
+    rows = []
+    for item in items:
+        rows.append(item.find('button'))
 
-    # get song ranking
-    pos = int(pos_wrap.find('span').string.strip())
-    # get song title
-    title = rest[0].find('h3').string.strip()
-    # get song artist
-    artists = rest[0].find('span').string.strip()
-    r = artists.replace(' &', ',').replace(' /', ',').replace(' X ', ', ')
-    r2 = r.replace(' (', ', ').replace(' Featuring', ',')
-    names = r2.split(', ')
-    if names[-1][-1] == ")":
-        names[-1] = names[-1][:-1]
-    # get last week ranking
-    prev_pos = rest[3].find('span').string.strip()
-    if prev_pos == '-':
-        prev_pos = None
-    else:
-        prev_pos = int(prev_pos)
-    # get peak ranking
-    peak_pos = int(rest[4].find('span').string.strip())
-    # get weeks on chart
-    weeks = int(rest[5].find('span').string.strip())
+    # extract and insert into data slice
+    for row in rows:
+        pos_wrapper = row.find('span')
+        song_wrapper = row.find('span', 'chart-element__information').find_all('span')
 
-    data.append({
-        'pos': pos,
-        'title': title,
-        'artists': names,
-        'prev_pos': prev_pos,
-        'peak_pos': peak_pos,
-        'weeks': weeks
-    })
+        # get song ranking
+        pos = int(pos_wrapper.find('span').string.strip())
+        # get song title
+        title = song_wrapper[0].string.strip()
+        # get song artist
+        artists = song_wrapper[1].string.strip()
+        r = artists.replace(' &', ',').replace(' /', ',').replace(' X ', ', ').replace(' x ', ', ').replace(' +', ',')
+        r2 = r.replace(' (', ', ').replace(' Featuring', ',').replace(' With', ',')
+        names = r2.split(', ')
+        if names[-1][-1] == ")":
+            names[-1] = names[-1][:-1]
+        # get month
+        month = int(url[32:34])
+        # get day
+        day = int(url[34:36])
+        # get year
+        year = int(url[28:32])
+
+        data.append({
+            'pos': pos,
+            'title': title,
+            'artists': names,
+            'month': month,
+            'day': day,
+            'year': year
+        })
+
+# Use BeautifulSoup and requests to collect data after Nov 2021 (html layout changed)
+urls = [NOV_28_2021_URL, JAN_15_2022_URL]
+for url in urls:
+    r = requests.get(url).text
+    soup = BeautifulSoup(r, 'html.parser')
+    items = soup.find_all('div', 'o-chart-results-list-row-container')
+    rows = []
+    for item in items:
+        rows.append(item.find('ul'))
+    
+    # extract and insert into data slice
+    for row in rows:
+        pos_wrapper = row.find('li', 'o-chart-results-list__item')
+        song_wrapper = row.find('li', 'lrv-u-width-100p').find('ul').find('li')
+
+        # get song ranking
+        pos = int(pos_wrapper.find('span').string.strip())
+        # get song title
+        title = song_wrapper.find('h3').string.strip()
+        # get song artist
+        artists = song_wrapper.find('span').string.strip()
+        r = artists.replace(' &', ',').replace(' /', ',').replace(' X ', ', ').replace(' x ', ', ').replace(' +', ',')
+        r2 = r.replace(' (', ', ').replace(' Featuring', ',').replace(' With', ',')
+        names = r2.split(', ')
+        if names[-1][-1] == ")":
+            names[-1] = names[-1][:-1]
+        # get month
+        month = int(url[32:34])
+        # get day
+        day = int(url[34:36])
+        # get year
+        year = int(url[28:32])
+
+        data.append({
+            'pos': pos,
+            'title': title,
+            'artists': names,
+            'month': month,
+            'day': day,
+            'year': year
+        })
 
 # Create connection to database
-conn = sqlite3.connect('billboard.db')
+conn = sqlite3.connect('data\\billboard.db')
 c = conn.cursor()
 
 # Delete tables if they exist
 c.execute('DROP TABLE IF EXISTS "billboard";')
 
-# Create tables in the database and add data to it.
-# use CREATE TABLE to create the companies table in the database
+# use CREATE TABLE to create the billboard table in the database
 create_billboard_table_command = '''
 CREATE TABLE IF NOT EXISTS billboard (
     rank REAL,
     title VARCHAR NOT NULL,
     artist VARCHAR NOT NULL,
-    prev_rank REAL,
-    peak_rank REAL,
-    weeks REAL,
-    PRIMARY KEY (title, artist)
+    month REAL,
+    day REAL,
+    year REAL,
+    PRIMARY KEY (title, artist, month, day, year)
 );
 '''
 c.execute(create_billboard_table_command)
@@ -89,13 +127,13 @@ for idx in range(len(data)):
     t = data[idx]['title']
     # initialize the artist value (only the first artist)
     a = data[idx]['artists'][0]
-    # initialize the prev_rank value
-    pv = data[idx]['prev_pos']
-    # initialize the peak_rank value
-    pk = data[idx]['peak_pos']
-    # initialize the weeks value
-    w = data[idx]['weeks']
+    # initialize the month value
+    m = data[idx]['month']
+    # initialize the day value
+    d = data[idx]['day']
+    # initialize the year value
+    y = data[idx]['year']
 
-    c.execute('INSERT INTO billboard VALUES (?, ?, ?, ?, ?, ?)', (r, t, a, pv, pk, w))
+    c.execute('INSERT INTO billboard VALUES (?, ?, ?, ?, ?, ?)', (r, t, a, m, d, y))
 
 conn.commit()
