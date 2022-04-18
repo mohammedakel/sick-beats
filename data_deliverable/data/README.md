@@ -11,10 +11,12 @@ All our data is stored in four tables: billboard rank, covid data, song attribut
 ### Attribute: title
 
 - Title is represented by the type VARCHAR, with a default value of ‘’. The range is len(1) to len(30) characters, with most titles being in the range [len(5), len(15)]. This is not an identifier unless paired with other attributes, and the values are not unique since there are songs that will stay on the billboard across multiple weeks. There are duplicate values, but by using a primary key of (title, artist, month, day, year), we can see that there are no “duplicate records”. This is a required value since every song on the billboard will have a title. We plan to use this attribute, in conjunction with the artist attribute, to search the Spotify API for song attributes and search the Genius API for song lyrics. This feature does not include potentially sensitive information.
+- Note: this will be used as part of a foreign key tuple (title, artist) to interact with the lyrics and songs tables.
 
 ### Attribute: artist
 
 - Artist is represented by the type VARCHAR, with a default value of ‘’. The range is len(5) to len(30) characters, with most artists being in the range [len(4), len(15)]. This is not an identifier unless paired with other attributes, and the values are not unique since there are artists that will stay on the billboard across multiple weeks and artists that have multiple songs on any given week’s billboard. There are duplicate values, but by using a primary key of (title, artist, month, day, year), we can see that there are no “duplicate records”. This is a required value since every song on the billboard will have an artist. We plan to use this attribute, in conjunction with the title attribute, to search the Spotify API for song attributes and search the Genius API for song lyrics. This feature does not include potentially sensitive information.
+- Note: this will be used as part of a foreign key tuple (title, artist) to interact with the lyrics and songs tables.
 
 ### Attribute: month
 
@@ -33,10 +35,12 @@ All our data is stored in four tables: billboard rank, covid data, song attribut
 ### Attribute: Title
 
 - Same as in billboard table, but distinct.
+- Note: this will be used as part of a foreign key tuple (title, artist) to interact with the billboard and songs tables.
 
 ### Attribute: Artist
 
 - Same as in billboard table, but distinct.
+- Note: this will be used as part of a foreign key tuple (title, artist) to interact with the billboard and songs tables.
 
 ### Attribute: Lyrics
 
@@ -47,10 +51,16 @@ All our data is stored in four tables: billboard rank, covid data, song attribut
 ### Attribute: title
 
 - Same as in billboard table, but distinct.
+- Note: this will be used as part of a foreign key tuple (title, artist) to interact with the billboard and lyrics tables.
 
 ### Attribute: artist
 
 - The artist of a song is represented as a List<String>. The default value of a string is the empty string “”. The range per string is len(1) to len(50) characters, with most artists being in the range [len(5), len(25)]. This is not an identifier unless paired with other attributes, and the values are not unique since there artists can produce multiple songs. There are duplicate artist values, but by using a primary key of (title, artist), we can see that there are no “duplicate records". This is a required value since every song will have an artist. We plan to use this attribute, in conjunction with the title attribute, to search the Spotify API for song attributes and search the Genius API for song lyrics. This feature does not include potentially sensitive information.
+- Note: this will be used as part of a foreign key tuple (title, artist) to interact with the billboard and lyrics tables.
+
+### Attribute: year
+
+- Same as in billboard table.
 
 ### Attribute: lyrics
 
