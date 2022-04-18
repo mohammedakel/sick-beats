@@ -98,7 +98,8 @@ def getSongData(song_title, artisit_name, max_result):
 	for track in tracks_list:	
 		print(track)	
 		track_id = track['id']
-		track_title = ['name']
+		track_title = track['name']
+		print(track_title)
 		artists_final = getAllArtists(track['artists'])
 		track_popularity = track['popularity']
 		track_expicit = track['explicit']
@@ -116,7 +117,7 @@ def getSongData(song_title, artisit_name, max_result):
 		track_tempo = audio_features_map["tempo"]
 		track_valence = audio_features_map["valence"]
 		track_duration = audio_features_map["duration_ms"]
-		processed_tracks.append({"title": track_title,
+		temp = {"title": track_title,
                       "artists": artists_final,
                       "popularity": track_popularity,
                       "explicit": track_expicit,
@@ -129,7 +130,8 @@ def getSongData(song_title, artisit_name, max_result):
                       "valence": track_valence,
                       "duration_ms": track_duration,
                       "acousticness": track_acoustic,
-                      "dancibility": track_dancability})
+                      "dancibility": track_dancability}
+		processed_tracks.append(temp)
 	return processed_tracks
     
 

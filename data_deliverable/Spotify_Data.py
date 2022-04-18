@@ -160,6 +160,7 @@ CREATE TABLE IF NOT EXISTS songs (
     PRIMARY KEY(id)
     );
 '''
+
 tb_ids = []
 tb_names = []
 tb_popularity = []
