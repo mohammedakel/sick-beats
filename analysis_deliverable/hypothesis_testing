@@ -1,0 +1,88 @@
+import numpy as np
+import pandas as pd
+from scipy.stats import ttest_ind
+
+from data_deliverable.Spotify_Song_Data import getSongData
+
+def attribute_danceability(peak_values, trough_values):
+    """
+    Input:
+        - peak_values: the danceability ratings of songs during a COVID peak
+        - trough_values the danceability ratings of songs from a COVID trough
+    Output:
+        - tstats: Test statistics (float)
+        - p-value: P-value (float)
+    """
+    # Using scipy's ttest_ind
+    # (https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html)
+    # to get the t-statistic and the p-value
+    # Note: The code will disregard null (nan) values. We will assume equal variance.
+
+    # Indepdendent two sample t-test, since testing unknown population means of 
+    # two groups
+    tstats, pvalue = ttest_ind(peak_values, trough_values, nan_policy='omit')
+
+    # Print tstats, pvalue
+    print("danceability two_sample_ttest tstats: ", tstats)
+    print("danceability two_sample_ttest pvalue: ", pvalue)
+
+    return tstats, pvalue
+
+def attribute_energy(peak_values, trough_values):
+    """
+    Input:
+        - peak_values: the energy ratings of songs during a COVID peak
+        - trough_values the energy ratings of songs from a COVID trough
+    Output:
+        - tstats: Test statistics (float)
+        - p-value: P-value (float)
+    """
+    # Using scipy's ttest_ind
+    # (https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html)
+    # to get the t-statistic and the p-value
+    # Note: The code will disregard null (nan) values. We will assume equal variance.
+
+    # Indepdendent two sample t-test, since testing unknown population means of 
+    # two groups
+    tstats, pvalue = ttest_ind(peak_values, trough_values, nan_policy='omit')
+
+    # Print tstats, pvalue
+    print("energy two_sample_ttest tstats: ", tstats)
+    print("energy two_sample_ttest pvalue: ", pvalue)
+
+    return tstats, pvalue
+
+def attribute_valence(peak_values, trough_values):
+    """
+    Input:
+        - peak_values: the valence ratings of songs during a COVID peak
+        - trough_values the valence ratings of songs from a COVID trough
+    Output:
+        - tstats: Test statistics (float)
+        - p-value: P-value (float)
+    """
+    # Using scipy's ttest_ind
+    # (https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html)
+    # to get the t-statistic and the p-value
+    # Note: The code will disregard null (nan) values. We will assume equal variance.
+
+    # Indepdendent two sample t-test, since testing unknown population means of 
+    # two groups
+    tstats, pvalue = ttest_ind(peak_values, trough_values, nan_policy='omit')
+
+    # Print tstats, pvalue
+    print("valence two_sample_ttest tstats: ", tstats)
+    print("valence two_sample_ttest pvalue: ", pvalue)
+
+    return tstats, pvalue
+
+if __name__ == "__main__":
+    # get the peak values and trough values for testing
+    peak_data = []
+    trough_data = []
+
+    # run hypothesis tests for danceability, energy, and valence
+    attribute_danceability(peak_values=peak_data, trough_values=trough_data)
+    attribute_energy(peak_values=peak_data, trough_values=trough_data)
+    attribute_valence(peak_values=peak_data, trough_values=trough_data)
+    

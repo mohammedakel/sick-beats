@@ -4,7 +4,7 @@ import json
 import sqlite3 
 
 #load credential from authorization.json
-credentials = json.load(open('/Users/mohammedakel/Desktop/CS1951A-Spring2022/Final_Project/authorization.json'))
+credentials = json.load(open('C:\Users\fangd\Desktop\cs1951a\rim-dj\data_deliverable\authorization.json'))
 client_id = credentials['client_id']
 client_secret = credentials['client_secret']
 
@@ -48,7 +48,7 @@ def getAllArtists(artists_list):
 
 
 def getSongAudioFeatures(Features_list): 
-	'''a basic function to processe a song audio feautres
+	'''a basic function to process a song audio feautres
 	param: Features_list obtained from track Json
 	return: map of audio feautres to their values'''
 
