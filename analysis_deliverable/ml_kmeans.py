@@ -107,6 +107,7 @@ plt.scatter(
 plt.legend(scatterpoints=1)
 plt.grid()
 plt.show()
+plt.savefig('kmeans.png')
 
 # calculating the inertias
 distortions = []
@@ -124,6 +125,7 @@ plt.plot(range(1, 11), distortions, marker='o')
 plt.xlabel('Number of clusters')
 plt.ylabel('Distortion')
 plt.show()
+plt.savefig('elbow.png')
 
 
 # convert the dataframe to a 2d numpy array
