@@ -1,7 +1,7 @@
 import sqlite3
 
 # Create connection to database
-conn = sqlite3.connect('billboard.db')
+conn = sqlite3.connect('data/billboard.db')
 c = conn.cursor()
 
 select_cmd = '''
