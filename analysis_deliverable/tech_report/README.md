@@ -8,13 +8,21 @@ Hypothesis 2: There is a significant difference in mean energy rating for songs 
 
 Hypothesis 3: There is a significant difference in mean valence rating for songs during COVID peaks and songs during COVID troughs. Success is finding that there is a significant (p-value < 0.05) difference).
 
-Machine Learning 1: ...
+Machine Learning 1: K-Means clustering of songs based on musical attributes. Success is identifying distinct clusters that visually separate the songs along meaningful dimensions (loudness, tempo, etc).
+
+Machine Learning 2: We used the NLP sentiment analysis tool in the Flair library to determine the positive or negative sentiment of the lyrics in songs at Covid peaks and troughs. The tool returned a "Positive" or "Negative" label along with a confidence metric between [0, 1]. We recorded the confidence value in our data table, interpreting it as the expected value of an indicator random variable. Success is finding statistically significant differences in sentiment by peak vs trough.
+
+Machine Learning 3: We ran a logistic regression of positive/negative sentiment on other attributes like date and peak vs trough. We scaled and demeaned the data by way of preprocessing and applied K-Fold validation. The library we employed uses an l2 regularizer by default to penalize complexity in the model. Success is a high average accuracy rating.
 
 ### Why did you use this statistical test or ML algorithm?
 
 For the three hypotheses, we decided to use a two-sample t-test because we are testing the unknown population means for two groups.
 
-For the ML algorithm, we decided to ...
+K-means clustering presented an appealing first approach because, as an unsupervised algorithm, it provided immediate, easily-visualized insight into our data without the need for labeled observations. Additionally, because we had encountered these methods in the previous assignment, we felt confident in our ability to use them well.
+
+For sentiment analysis, Flair's tool has been trained on many corpuses of data, and of the options we considered, Flair's sacraficed runtime for improved accuracy, which we valued for our purposes.
+
+We used logistic regression because we aimed to provide a binary classification of lyrical sentiment as a function of numeric data. Indeed, classifying the positivity vs negativity of the lyrics based on some probability threshold was consonant with our understanding of Flair's sentiment score as the expectation of an indicator variable. 
 
 ### Which other tests did you consider or evaluate?
 
