@@ -43,8 +43,6 @@ def get_all_song_data():
         data = data + getSongData(titles[i], artists[i], 1)
     return data
 
-get_all_song_data()
-
 # Create connection to database
 conn = sqlite3.connect('data\\songs.db')
 c = conn.cursor()
