@@ -55,24 +55,16 @@ All our data is stored in four tables: billboard rank, covid data, song attribut
 
 ### Attribute: artist
 
-- The artist of a song is represented as a List<String>. The default value of a string is the empty string “”. The range per string is len(1) to len(50) characters, with most artists being in the range [len(5), len(25)]. This is not an identifier unless paired with other attributes, and the values are not unique since there artists can produce multiple songs. There are duplicate artist values, but by using a primary key of (title, artist), we can see that there are no “duplicate records". This is a required value since every song will have an artist. We plan to use this attribute, in conjunction with the title attribute, to search the Spotify API for song attributes and search the Genius API for song lyrics. This feature does not include potentially sensitive information.
+- The artist of a song is represented as a VARCHAR. The default value of a string is the empty string “”. The range per string is len(1) to len(50) characters, with most artists being in the range [len(5), len(25)]. This is not an identifier unless paired with other attributes, and the values are not unique since there artists can produce multiple songs. There are duplicate artist values, but by using a primary key of (title, artist), we can see that there are no “duplicate records". This is a required value since every song will have an artist. We plan to use this attribute, in conjunction with the title attribute, to search the Spotify API for song attributes and search the Genius API for song lyrics. This feature does not include potentially sensitive information.
 - Note: this will be used as part of a foreign key tuple (title, artist) to interact with the billboard and lyrics tables.
-
-### Attribute: year
-
-- Same as in billboard table.
-
-### Attribute: lyrics
-
-- The Genius API will be used to extract song lyrics. All Genius API responses are JSON. The value returned will be an object with key-value pairs of formats and results (in our case, it is either HTML or CSV). Tracks can take any range of reasonable amount of words. This attribute is not an identifier and values are not necessarily unique. Lyrics will be used in analysis to understand how COVID-19 affected lyrical complexity/simplicity as well as prevalent sentiments. Lyrics don't include any sensitive information as most of the information is publicly available on multiple platforms and formats.
 
 ### Attribute: popularity
 
 - 0-to-100 score that ranks how popular an artist is relative to other artists on Spotify. Popularity is determined by recent stream count, and other factors like save rate, the number of playlists, skip rate, and share rate. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Can be considered a unique identifier.
 
-### Attribute: duration
+### Attribute: duration_ms
 
-- Duration is represented by the type TIME. The default value is 00:00:00, and the range is 00:01:00 to 00:05:00, with most durations being in the range [00:02:30, 00:04:30]. This is not an identifier unless paired with other attributes, and the values are not unique since the duration of a song can be the same for multiple songs. There are duplicate duration values, but by using a primary key of (title, duration), we can see that there are no "duplicate records". This is a required value since every song will have a duration. We plan to use this attribute to determine what length of songs users prefer to listen to depending on outside contexts (i.e. Covid prevalence). This feature does not include potentially sensitive information.
+- Duration is represented by the type REAL. The default value is 0, and the range is 0 to 300,000, with most durations being in the range [150,000, 250,000]. This is not an identifier unless paired with other attributes, and the values are not unique since the duration of a song can be the same for multiple songs. There are duplicate duration values, but by using a primary key of (title, duration), we can see that there are no "duplicate records". This is a required value since every song will have a duration. We plan to use this attribute to determine what length of songs users prefer to listen to depending on outside contexts (i.e. Covid prevalence). This feature does not include potentially sensitive information.
 
 ### Attribute: liveness
 

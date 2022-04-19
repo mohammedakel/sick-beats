@@ -8,9 +8,6 @@ credentials = json.load(open(r'C:\Users\fangd\Desktop\cs1951a\rim-dj\data_delive
 client_id = credentials['client_id']
 client_secret = credentials['client_secret']
 
-# print(client_id)
-# print(client_secret) 
-
 client_credentials_manager = SpotifyClientCredentials(client_id=client_id,client_secret=client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
@@ -24,16 +21,7 @@ def getTrackId(song_title, artist_name, max_result=5):
 	params = 'artist:' + artist_name + ' track:' + song_title
 	result = sp.search(q=params, type='track', limit=max_result)
 	return(result['tracks']['items'])
-
-
-'''
-check if the above function works: 
-result = getTrackId("Lonely World", "Moses Sumney", 2) 
-print(type(result['tracks']['items']))
-for i in result['tracks']['items']: 
-	print(i)
-	print("---------")
-'''
+	
 
 def getAllArtists(artists_list):
 	'''a basic function used to processe a list of all artists
@@ -87,7 +75,7 @@ def getSongAudioFeatures(features_list):
 
 
 def getSongData(song_title, artist_name, max_result):
-	'''given a track titel and artist name, this function returns the Spotify Track data for the given title and artisit
+	'''given a track title and artist name, this function returns the Spotify Track data for the given title and artist
 	param: title of the song to search for
 	param: name of the artist of the song to search for
 	param: maximum number of tracks to return (default is 5)
@@ -96,17 +84,13 @@ def getSongData(song_title, artist_name, max_result):
 	tracks_list = getTrackId(song_title, artist_name, max_result)
 	processed_tracks = []
 	for track in tracks_list:	
-		# print(track)	
 		track_id = track['id']
 		track_title = track['name']
-		# print(track_title)
 		artists_final = getAllArtists(track['artists'])
 		track_popularity = track['popularity']
-		track_expicit = track['explicit']
 		
 		features = sp.audio_features(track_id)
 		audio_features_map = getSongAudioFeatures(features)
-		#print(audio_features_map)
 		track_danceability = audio_features_map["danceability"]
 		track_liveness = audio_features_map["liveness"]
 		track_loudness = audio_features_map["loudness"]
@@ -120,7 +104,6 @@ def getSongData(song_title, artist_name, max_result):
 		temp = {"title": track_title,
                       "artists": artists_final,
                       "popularity": track_popularity,
-                      "explicit": track_expicit,
                       "liveness": track_liveness,
                       "loudness": track_loudness,
                       "speechiness": track_speechiness,
@@ -133,13 +116,4 @@ def getSongData(song_title, artist_name, max_result):
                       "danceability": track_danceability}
 		processed_tracks.append(temp)
 	return processed_tracks
-    
-
-''''
-result = getSongData("Lonely World", "Moses Sumney", 2)
-print(result)
-#check why name is not being printed as "name"
-'''
-
-# print("End")
 
