@@ -9,16 +9,16 @@ import sqlite3
 # can fetch data of up to 99 songs in a single connection session
 
 #load credential from authorization.json
-credentials = json.load(open('/Users/mohammedakel/Desktop/CS1951A-Spring2022/Final_Project/authorization.json'))
+credentials = json.load(open(r'C:\Users\fangd\Desktop\cs1951a\rim-dj\data_deliverable\authorization.json'))
 client_id = credentials['client_id']
 client_secret = credentials['client_secret']
 
-print(client_id)
-print(client_secret)
+# print(client_id)
+# print(client_secret)
 
 
 #index and load playlists from playlists_like_dislike.json
-playlists_json = json.load(open('/Users/mohammedakel/Desktop/CS1951A-Spring2022/Final_Project/playlists_like_dislike.json'))
+playlists_json = json.load(open(r'C:\Users\fangd\Desktop\cs1951a\rim-dj\data_deliverable\Playlists_like_dislike.json'))
 client_credentials_manager = SpotifyClientCredentials(client_id=client_id,client_secret=client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
@@ -160,6 +160,7 @@ CREATE TABLE IF NOT EXISTS songs (
     PRIMARY KEY(id)
     );
 '''
+
 tb_ids = []
 tb_names = []
 tb_popularity = []

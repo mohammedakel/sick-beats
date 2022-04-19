@@ -2,6 +2,9 @@ from bs4 import BeautifulSoup
 import requests
 import sqlite3
 
+# Peaks: 4/10/2020, 7/24/2020, 1/11/2021, 9/13/2021, 1/15/2022
+# Troughs: 9/11/2020, 12/30/2020, 6/22/2021, 10/26/2021, 11/28/2021
+
 # BILLBOARD URLS
 APR_10_2020_URL = 'https://web.archive.org/web/20200410/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
 JUL_24_2020_URL = 'https://web.archive.org/web/20200724/https://www.billboard.com/charts/hot-100#/charts/hot-100/'
