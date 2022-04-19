@@ -3,8 +3,7 @@ import sqlite3
 
 import sys
 sys.path.append('../')
-
-from data_deliverable.Spotify_Song_Data import getSongData
+from Spotify_Song_Data import getSongData
 
 def two_sample_ttest(peak_values, trough_values):
     """
@@ -31,7 +30,7 @@ def two_sample_ttest(peak_values, trough_values):
     return tstats, pvalue
 
 def get_songs_by_date(month, day, year):
-    db = r'C:\Users\fangd\Desktop\cs1951a\rim-dj\data_deliverable\data\billboard.db'
+    db = "/Users/mohammedakel/Desktop/CS1951A-Spring2022/rim-dj/data_deliverable/data/billboard.db"
     # create a database connection
     conn = sqlite3.connect(db)
     cur = conn.cursor()
@@ -93,6 +92,7 @@ def get_trough_attribute(attribute):
     return attribute_values
 
 
+'''
 if __name__ == "__main__":
     # get the peak values and trough values for testing per attribute
     # Note: we can test additional attributes by changing the input argument in get_[peak/trough]_attribute()
@@ -109,6 +109,8 @@ if __name__ == "__main__":
     print("---Testing Valence Difference---")
     peak_valence = get_peak_attribute("valence")
     trough_valence = get_trough_attribute("valence")
-    two_sample_ttest(peak_values=peak_valence, trough_values=trough_valence)  
+    two_sample_ttest(peak_values=peak_valence, trough_values=trough_valence)
+'''
+
     
     

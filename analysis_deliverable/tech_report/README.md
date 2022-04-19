@@ -54,7 +54,12 @@ Machine Learning 3: For logistic regression, our average accuracy was below 60%,
 
 ### For your visualization, why did you pick this graph? What alternative ways might you communicate the result? Were there any challenges visualizing the results, if so, what where they? Will your visualization require text to provide context or is it standalone (either is fine, but it's recognize which type your visualization is)?
 
-We picked ...
+Our first set of graphs describe the correlation between the different song attributes during a peak as well as through a trough. These graphs allow us to better understand the relationship and correlation between the different attributes during COVID peaks and troughs. They also allow for dimensionality reduction.  
+
+Our second set of graphs describes the distribution of certain attributes during COVID peaks and COVID troughs.  This is done through boxplots for each set of data. The boxplots provide a descriptive analysis of the given attribute. The side-by-side boxplots allow for more meaningful comparisons and pattern detection. 
+
+Our third set of graphs provides a closer look into the relationship between two given attributes of a given data set. This is done through a scatter plot of the distribution of the two attributes. This was particularly helpful in choosing attributes for hypothesis testing and machine learning components of the project. 
+
 
 ### Full results + graphs (at least 1 stats/ml test and at least 1 visualization). You should push your visualizations to the /analysis_deliverable/visualizations folder in your repo. Depending on your model/test/project we would ideally like you to show us your full process so we can evaluate how you conducted the test!
 
