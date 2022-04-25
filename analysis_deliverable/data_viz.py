@@ -1,6 +1,7 @@
 from hypothesis_testing import * 
 import pandas as pd 
 
+print("start")
 charts_file_path = "/Users/mohammedakel/Desktop/CS1951A-Spring2022/rim-dj/analysis_deliverable/charts"
 
 def attributes_corr_heatmap(df):
@@ -17,6 +18,7 @@ peak_dancability = get_peak_attribute("danceability")
 print("loaded peak dancability")
 dancability_boxPlot = pd.concat([trough_dancability, peak_dancability], axis=1).boxplot()
 print(dancability_boxPlot)
+
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 '''
