@@ -55,7 +55,6 @@ def get_peak_attribute(attribute):
     attribute_values = []
     
     titles_one, names_one = get_songs_by_date(4, 10, 2020)
-    print(titles_one)
     titles_two, names_two = get_songs_by_date(7, 24, 2020)
     titles_three, names_three = get_songs_by_date(1, 11, 2021)
     titles_four, names_four = get_songs_by_date(9, 13, 2021)

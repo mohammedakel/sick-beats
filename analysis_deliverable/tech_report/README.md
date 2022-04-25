@@ -14,8 +14,6 @@ Machine Learning 2: We used the NLP sentiment analysis tool in the Flair library
 
 Machine Learning 3: We ran a logistic regression of positive/negative sentiment on other attributes like date and peak vs trough. We scaled and demeaned the data by way of preprocessing and applied K-Fold validation. The library we employed uses an l2 regularizer by default to penalize complexity in the model. Success is a high average accuracy rating.
 
-Machine Learning 4: LINEAR REGRESSION?
-
 ### Why did you use this statistical test or ML algorithm?
 
 For the three hypotheses, we decided to use a two-sample t-test because we are testing the unknown population means for two groups. We did not assume equal variance.
@@ -25,8 +23,6 @@ K-means clustering presented an appealing first approach because, as an unsuperv
 For sentiment analysis, Flair's tool has been trained on many corpuses of data, and of the options we considered, Flair's sacraficed runtime for improved accuracy, which we valued for our purposes.
 
 We used logistic regression because we aimed to provide a binary classification of lyrical sentiment as a function of numeric data. Indeed, classifying the positivity vs negativity of the lyrics based on some probability threshold was consonant with our understanding of Flair's sentiment score as the expectation of an indicator variable.
-
-Machine Learning 4: LINEAR REGRESSION?
 
 ### Which other tests did you consider or evaluate?
 
@@ -50,7 +46,7 @@ Hypothesis 3: The p-value of the two-sample t-test was 0.835. Since the p-value 
 
 It makes sense that the mean energy rating would be different during COVID peaks and throughts--people may not feel like listening to upbeat music during times of COVID peaks, for instance. However, it is weird that difference in energy values would be statistically different, but not the differences in danceability or valence. It seems that, intuitively, all three should somewhat be related to each other. For instance, more energetic songs are usually more danceable. However, we are confident in the way we conducted the two-sample t-test so there must have been some other factor that affects danceability and valence but not energy.
 
-Machine Learning 1:
+Machine Learning 1: K-means succesfully clustered our data! We found the algorithm useful in eliciting the structure of our observations and the subtle relationships among the Spotify attributes (tempo, danceability, etc) of these top pop songs.
 
 Machine Learning 2: Our sentiment analysis went smoothly. We achieved a nice balance of songs whose lyrics were deemed positive vs negative, and we achieved sufficient labeled data to carry out our K-Fold validation.
 
@@ -73,4 +69,4 @@ A confounding variable might be the fact that music taste is subject to pop cult
 
 ### If you did a machine learning model, why did you choose this machine learning technique? Does your data have any sensitive/protected attributes that could affect your machine learning model?
 
-You can also attach photos from your repo
+We chose our ML techniques for the reasons described above: familiarity, interest, and applicability to our data. Our data does not contain sensitive or protected attributes. In fact, we sourced our data from prominent industry locations! Billboard has been the preeminent music industry rating provider for decades: they take in well-known media and publish their results prominently. Likewise, Covid data is certainly intimate to the people who provide it, but the information lives in public data sets, and we received our numbers from Our World in Data, which is a credible and prominent organization who has established themself as the leading source of Covid data, drawing on research institutions like Johns Hopkins University and publishing their results in sources like the New York Times.
