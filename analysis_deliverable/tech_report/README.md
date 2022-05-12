@@ -38,11 +38,11 @@ When evaluating the logistic regression model, we sought to maximize accuracy on
 
 ### What is your interpretation of the results? Do accept or deny the hypothesis, or are you satisfied with your prediction accuracy? For prediction projects, we expect you to argue why you got the accuracy/success metric you have. Intuitively, how do you react to the results? Are you confident in the results?
 
-Hypothesis 1: The p-value of the two-sample t-test was 0.531. Since the p-value is above our chosen signficance level of 0.05, we cannot reject the null hypothesis, and cannot conclude that there is a significant difference in mean danceability rating for songs during COVID peaks and songs during COVID troughs.
+Hypothesis 1: The p-value of the two-sample t-test was 0.541. Since the p-value is above our chosen signficance level of 0.05, we cannot reject the null hypothesis, and cannot conclude that there is a significant difference in mean danceability rating for songs during COVID peaks and songs during COVID troughs.
 
-Hypothesis 2: The p-value of the two-sample t-test was 0.043. Since the p-value is below our chosen significance level of 0.05, we can reject the null hypothesis, and can conclude that there was a significant difference in mean energy rating for songs during COVID peaks and songs during COVID troughs.
+Hypothesis 2: The p-value of the two-sample t-test was 0.033. Since the p-value is below our chosen significance level of 0.05, we can reject the null hypothesis, and can conclude that there was a significant difference in mean energy rating for songs during COVID peaks and songs during COVID troughs.
 
-Hypothesis 3: The p-value of the two-sample t-test was 0.835. Since the p-value is above our chosen significance level of 0.05, we cannot reject the null hypothesis, and cannot conclude that there is a significant difference in mean valence rating for songs during COVID peaks and songs during COVID troughs.
+Hypothesis 3: The p-value of the two-sample t-test was 0.816. Since the p-value is above our chosen significance level of 0.05, we cannot reject the null hypothesis, and cannot conclude that there is a significant difference in mean valence rating for songs during COVID peaks and songs during COVID troughs.
 
 It makes sense that the mean energy rating would be different during COVID peaks and throughts--people may not feel like listening to upbeat music during times of COVID peaks, for instance. However, it is weird that difference in energy values would be statistically different, but not the differences in danceability or valence. It seems that, intuitively, all three should somewhat be related to each other. For instance, more energetic songs are usually more danceable. However, we are confident in the way we conducted the two-sample t-test so there must have been some other factor that affects danceability and valence but not energy.
 
