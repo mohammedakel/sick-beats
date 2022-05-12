@@ -8,6 +8,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import plotly.offline as pyo
+import statistics
+from math import sqrt
 
 CHARTS_FILE = "/Users/mohammedakel/Desktop/CS1951A-Spring2022/rim-dj/analysis_deliverable/charts"
 
@@ -249,6 +251,7 @@ for att in radar_attributes:
     trough_means.append(mean_trough)
 '''
 
+'''
 label_loc = np.linspace(start=0, stop=2 * np.pi, num=len(peak_means_cal))
 plt.figure(figsize=(6, 6))
 plt.subplot(polar=True)
@@ -273,6 +276,69 @@ fig = go.Figure(
 )
 
 pyo.plot(fig)
+'''
+
+
+def plot_confidence_interval(x, values, z=1.96, color='#2187bb', horizontal_line_width=0.25):
+    mean = statistics.mean(values)
+    stdev = statistics.stdev(values)
+    confidence_interval = z * stdev / sqrt(len(values))
+
+    left = x - horizontal_line_width / 2
+    top = mean - confidence_interval
+    right = x + horizontal_line_width / 2
+    bottom = mean + confidence_interval
+    plt.plot([x, x], [top, bottom], color=color)
+    plt.plot([left, right], [top, top], color=color)
+    plt.plot([left, right], [bottom, bottom], color=color)
+    plt.plot(x, mean, 'o', color='#f44336')
+
+    return mean, confidence_interval
+
+valence_peak_data = get_peak_attribute("valence")
+print("loaded peak data for valence")
+print("peak avg: ", sum(valence_peak_data)/len(valence_peak_data))
+valence_trough_data = get_trough_attribute("valence")
+print("loaded trough data for valence")
+print("trough avg: ", sum(valence_trough_data)/len(valence_trough_data))
+
+plt.xticks([1, 2], ['Peaks', 'Troughs'])
+plt.title('Confidence Interval for Valence')
+plot_confidence_interval(1, valence_peak_data)
+plot_confidence_interval(2, valence_trough_data)
+plt.show()
+
+
+
+loudness_peak_data = get_peak_attribute("loudness")
+print("loaded peak data for loudness")
+print("peak avg: ", sum(loudness_peak_data)/len(loudness_peak_data))
+loudness_trough_data = get_trough_attribute("loudness")
+print("loaded trough data for loudness")
+print("trough avg: ", sum(loudness_trough_data)/len(loudness_trough_data))
+
+
+
+plt.xticks([1, 2], ['Peaks', 'Troughs'])
+plt.title('Confidence Interval for Loudness')
+plot_confidence_interval(1, loudness_peak_data)
+plot_confidence_interval(2, loudness_trough_data)
+plt.show()
+
+
+danceability_peak_data = get_peak_attribute("danceability")
+print("loaded peak data for danceability")
+print("peak avg: ", sum(danceability_peak_data)/len(danceability_peak_data))
+danceability_trough_data = get_trough_attribute("danceability")
+print("loaded trough data for danceability")
+print("trough avg: ", sum(danceability_trough_data)/len(danceability_trough_data))
+
+
+plt.xticks([1, 2], ['Peaks', 'Troughs'])
+plt.title('Confidence Interval for danceability')
+plot_confidence_interval(1, danceability_peak_data)
+plot_confidence_interval(2, danceability_trough_data)
+plt.show()
 
 
 

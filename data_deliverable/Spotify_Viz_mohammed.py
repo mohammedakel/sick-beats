@@ -56,8 +56,6 @@ CREATE TABLE IF NOT EXISTS vizTestingTable (
     name VARCHAR,
     popularity REAL,
     duration_ms REAL,
-    explicit REAL,
-    dancability REAL,
     liveness REAL,
     loudness REAL,
     speech REAL,
@@ -85,9 +83,9 @@ for i in result:
     #print(popularity)
     duration_ms = i[0]['duration_ms']
     #print(duration_ms)
-    explicit = i[0]['explicit']
+    #explicit = i[0]['explicit']
     #print(explicit)
-    dancability = i[0]['dancibility']
+    #dancability = i[0]['dancability']
     #print(dancability)
     liveness = i[0]['liveness']
     #print(liveness)
@@ -110,7 +108,7 @@ for i in result:
     else:
         level = 0
     #print(level)
-    c.execute('INSERT INTO vizTestingTable VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (ID, name, popularity, duration_ms, explicit, dancability, liveness, loudness, speech, instrumental, Acoustic, artists, tempo, valance, level))
+    c.execute('INSERT INTO vizTestingTable VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (ID, name, popularity, duration_ms, liveness, loudness, speech, instrumental, Acoustic, artists, tempo, valance, level))
 
 testing_df = pd.read_sql_query("SELECT * from vizTestingTable", conn)   
 conn.commit()
@@ -118,7 +116,7 @@ conn.commit()
 print(testing_df.head())
 
 
-
+"""
 def boxplot_by_level(df, name_attributeColumn, name_ByColumn, title):
     '''given a dataframe that contains a coded categorical column represeting COVID level (eg: 1 for high incidence, 0 for low incidence ...), this function returns a box plots for the different
     attributes by COVID level'''
@@ -162,10 +160,12 @@ popularity_dancability_scatterplot_byLevel =  Two_Attributes_scatterplot_ByLevel
 ggsave(plot=popularity_dancability_scatterplot_byLevel,filename = "dancability_popularity_test.png", path=CHARTS_FILE)
 popularity_dancability_scatterplot_byLevel =  Two_Attributes_scatterplot_ByLevel(testing_df, "duration_ms", "popularity", "level", "Duration vs Popularity By Level")
 ggsave(plot=popularity_dancability_scatterplot_byLevel,filename = "duration_popularity_test.png", path=CHARTS_FILE)
-
+"""
+    
 def attributes_corr_heatmap(df):
     '''given a data frame, the function returns a heatmap depeciting the correlation between all the attributes in the dataframe'''
     matrix = df.corr().round(2)
+    sns.set(font_scale=0.6)
     graph = sns.heatmap(matrix, annot=True)
     file_path = CHARTS_FILE + "/heatmap_test.png"
     plt.savefig(file_path)

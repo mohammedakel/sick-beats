@@ -4,9 +4,10 @@ import json
 import sqlite3 
 
 #load credential from authorization.json
-credentials = json.load(open(r'C:\Users\fangd\Desktop\cs1951a\rim-dj\data_deliverable\authorization.json'))
+credentials = json.load(open('/Users/mohammedakel/Desktop/CS1951A-Spring2022/rim-dj/data_deliverable/authorization.json'))
 client_id = credentials['client_id']
 client_secret = credentials['client_secret']
+
 
 client_credentials_manager = SpotifyClientCredentials(client_id=client_id,client_secret=client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
