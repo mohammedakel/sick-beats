@@ -23,17 +23,17 @@ This is the final project's master repo! Please use the following shortcut links
 ## Final Deliverable ##
 
 ### Poster ###
-[Poster](https://github.com/cs1951a-brown-spring-2022/rim-dj/blob/main/final_deliverable/poster/poster.pdf)
+- [Poster](https://github.com/cs1951a-brown-spring-2022/rim-dj/blob/main/final_deliverable/poster/poster.pdf)
 
 ### Code ###
-[Code](code/)<br/>
+- [Code](code/)<br/>
 
 ### Abstract ###
-[Abstract](https://github.com/cs1951a-brown-spring-2022/rim-dj/blob/main/final_deliverable/abstract)
+- [Abstract](https://github.com/cs1951a-brown-spring-2022/rim-dj/blob/main/final_deliverable/abstract)
 
 ### Final Presentation ###
 - [recording]()
 - [slides](https://github.com/cs1951a-brown-spring-2022/rim-dj/blob/main/final_deliverable/poster/poster.pdf)
 
 ### Visualizations ###
-[Visualizations](visualizations)
+- [Visualizations](visualizations)
