@@ -23,7 +23,7 @@ This is the final project's master repo! Please use the following shortcut links
 ## Final Deliverable ##
 
 - ### Poster ###
-[Poster](final_deliverable/poster/poster.pdf)
+  - [Poster](final_deliverable/poster/poster.pdf)
 
 - ### Code ###
   - [Code](final_deliverable/code/)<br/>
