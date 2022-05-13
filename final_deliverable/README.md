@@ -9,7 +9,7 @@ This is the final deliverable's master directory! Please use the following short
 ([Capstone App Demo]())
 
 ### Abstract ###
-[Abstract](https://github.com/CS1951A-S21-Brown/PALs/blob/main/final_deliverable/)
+[Abstract](https://github.com/cs1951a-brown-spring-2022/rim-dj/blob/main/final_deliverable/abstract/abstract.pdf)
 
 ### Final Presentation ###
 - [recording]()
