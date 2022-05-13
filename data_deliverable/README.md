@@ -6,4 +6,4 @@ This is the data deliverable's master directory! Please use the following shortc
 
 ### Reports ###
 - [Tech Report](reports/tech_report/)
-- [Socio-historical Context and Impact Report](reports/social_impact_report)
+- [Socio-historical Context and Impact Report](https://github.com/cs1951a-brown-spring-2022/rim-dj/blob/main/final_deliverable/abstract/Social_impact_report.pdf)
