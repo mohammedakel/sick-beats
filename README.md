@@ -22,19 +22,18 @@ This is the final project's master repo! Please use the following shortcut links
 
 ## Final Deliverable ##
 
-- ### Poster ###
-  - [Poster](final_deliverable/poster/poster.pdf)
+### Poster ###
+[Poster](https://github.com/cs1951a-brown-spring-2022/rim-dj/blob/main/final_deliverable/poster/poster.pdf)
 
-- ### Code ###
-  - [Code](final_deliverable/code/)<br/>
-  - ([Capstone App Demo]()
+### Code ###
+[Code](code/)<br/>
 
-- ### Abstract ###
-  - [Abstract]()
+### Abstract ###
+[Abstract](https://github.com/cs1951a-brown-spring-2022/rim-dj/blob/main/final_deliverable/abstract)
 
-- ### Final Presentation ###
-  - [recording]()
-  - [slides]()
+### Final Presentation ###
+- [recording]()
+- [slides](https://github.com/cs1951a-brown-spring-2022/rim-dj/blob/main/final_deliverable/poster/poster.pdf)
 
-- ### Visualizations ###
-  - [Visualizations](final_deliverable/visualizations)
+### Visualizations ###
+[Visualizations](visualizations)
