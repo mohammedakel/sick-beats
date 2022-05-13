@@ -8,7 +8,7 @@ This is the final deliverable's master directory! Please use the following short
 [Code](code/)<br/>
 
 ### Abstract ###
-[Abstract](https://github.com/cs1951a-brown-spring-2022/rim-dj/blob/main/final_deliverable/abstract/abstract.pdf)
+[Abstract](https://github.com/cs1951a-brown-spring-2022/rim-dj/blob/main/final_deliverable/abstract)
 
 ### Final Presentation ###
 - [recording]()
