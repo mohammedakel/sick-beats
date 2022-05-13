@@ -12,7 +12,7 @@ This is the final deliverable's master directory! Please use the following short
 
 ### Final Presentation ###
 - [recording]()
-- [slides](https://github.com/CS1951A-S21-Brown/PALs/blob/main/final_deliverable/)
+- [slides](https://github.com/cs1951a-brown-spring-2022/rim-dj/blob/main/final_deliverable/poster/poster.pdf)
 
 ### Visualizations ###
 _You can edit this README to refer to your own visualizations once you upload them_
